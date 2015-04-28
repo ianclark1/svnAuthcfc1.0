@@ -1,0 +1,50 @@
+### This file is an example authorization file for svnserve.
+### Its format is identical to that of mod_authz_svn authorization
+### files.
+### As shown below each section defines authorizations for the path and
+### (optional) repository specified by the section name.
+### The authorizations follow. An authorization line can refer to a
+### single user, to a group of users defined in a special [groups]
+### section, or to anyone using the '*' wildcard.  Each definition can
+### grant read ('r') access, read-write ('rw') access, or no access
+### ('').
+
+[groups]
+ssh_admins = abrader,tpryan,dkonopka
+krb_admins = abrader@WHARTON.UPENN.EDU,tpryan@WHARTON.UPENN.EDU,dkonopka@WHARTON.UPENN.EDU
+ssh_users = 
+krb_users = 
+
+[/]
+@ssh_admins = rw
+@krb_admins = rw
+@ssh_users = rw
+@krb_users = rw
+* = r
+
+[/Users/abrader]
+abrader = rw
+abrader@WHARTON.UPENN.EDU = rw
+* = 
+
+[/Users/dkonopka]
+dkonopka = rw
+dkonopka@WHARTON.UPENN.EDU = rw
+* = 
+
+[/Users/tpryan]
+tpryan = rw
+tpryan@WHARTON.UPENN.EDU = rw
+* = 
+
+#[/Departments/Core-Systems]
+
+# harry_and_sally = harry,sally
+
+# [/foo/bar]
+# harry = rw
+# * =
+
+# [repository:/baz/fuz]
+# @harry_and_sally = rw
+# * = r
